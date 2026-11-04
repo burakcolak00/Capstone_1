@@ -36,7 +36,10 @@ ORDER BY 1, 2;
 
 SELECT *
 FROM (
-    SELECT State, total_revenue, SUM(total_revenue) OVER() AS northeast_revenue, ROUND(total_revenue / SUM(total_revenue) OVER() * 100, 2 ) AS state_pct_of_region
+    SELECT State,
+           total_revenue, 
+           SUM(total_revenue) OVER() AS northeast_revenue, 
+           ROUND(total_revenue / SUM(total_revenue) OVER() * 100, 2 ) AS state_pct_of_region
     FROM (
         SELECT State, SUM(Sale_Amount) AS total_revenue 
         FROM store_sales JOIN store_locations ON store_sales.Store_ID = store_locations.StoreId
@@ -61,7 +64,33 @@ JOIN products ON store_sales.Prod_Num = products.ProdNum
 JOIN inventory_categories USING(Categoryid)
 JOIN store_locations ON store_sales.Store_ID = store_locations.StoreId
 WHERE store_locations.State = 'Massachusetts'
-GROUP BY 1, 2,3
+GROUP BY 1, 2, 3
 ORDER BY 1, 2, 3;
+
+-- =====================================================================
+-- Q5 Ranking of in-store sales performance by store for Massachusetts
+-- =====================================================================
+
+SELECT RANK() OVER (ORDER BY SUM(Sale_Amount) DESC) AS store_rank,
+       Store_ID,
+       store_locations.StoreLocation AS store_location,
+       SUM(Sale_Amount) AS total_revenue, 
+       COUNT(*) AS number_of_transactions,
+       ROUND(AVG(Sale_Amount), 2) AS avg_sale_amount 
+FROM Store_Sales
+JOIN store_locations ON store_sales.Store_ID = store_locations.StoreId
+WHERE store_locations.State = 'Massachusetts'
+GROUP BY 2
+ORDER BY 4 DESC;
+
+-- ====================================================================================
+-- Q6 Recommendation for where to focus sales attention next quarter for Massachusetts
+-- ====================================================================================
+
+
+
+
+
+
 
 
