@@ -26,10 +26,10 @@ where to focus sales attention next quarter.
 
 | File | Description |
 |---|---|
-| `lastname_sales_analysis.sql` | SQL script with queries and comments for each question |
-| `lastname_territory_chart.xlsx` | Excel workbook containing the PivotChart |
-| `lastname_bonus_queries.sql` | Bonus SQL queries (if completed) |
-| `lastname_bonus_chart.xlsx` | Bonus PivotChart (if completed) |
+| `colak_sales_analysis.sql` | SQL script with queries and comments for each question |
+| `colak_territory_chart.xlsx` | Excel workbook containing the PivotChart |
+| `colak_bonus_queries.sql` | Bonus SQL queries (if completed) |
+| `colak_bonus_chart.xlsx` | Bonus PivotChart (if completed) |
 
 ## Database
 
