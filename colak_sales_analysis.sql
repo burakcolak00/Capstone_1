@@ -157,7 +157,6 @@ JOIN products ON store_sales.Prod_Num = products.ProdNum
 JOIN inventory_categories USING(Categoryid)
 JOIN store_locations ON store_sales.Store_ID = store_locations.StoreId
 WHERE store_locations.State = 'Massachusetts'
-AND Category IN('Textbooks', 'Technology & Accessories')
 GROUP BY 1, 2, 3
 ORDER BY 1, 2, 3;
 
