@@ -31,8 +31,8 @@ The data covers in-store sales from January 1, 2022 to December 31, 2025.
 | `colak_sales_analysis.sql` | SQL script with queries and comments for each question |
 | `colak_deck_support_queries.sql` | SQL scripts with queries used to make charts on excel |
 | `colak_territory_chart.xlsx` | Excel workbook containing the PivotCharts |
-| `colak_capstone1_10min` | Powerpoint presentation for 10 mins |
-| `colak_capstone1_5min` | Powerpoint presentation for 5 mins |
+| `colak_capstone1_10min.pptx` | Powerpoint presentation for 10 mins |
+| `colak_capstone1_5min.pptx` | Powerpoint presentation for 5 mins |
 
 ## Database
 
