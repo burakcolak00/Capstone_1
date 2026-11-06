@@ -17,7 +17,6 @@ JOIN store_locations ON store_sales.Store_ID = store_locations.StoreId
 WHERE store_locations.State = 'Massachusetts';
 
 -- Result: Massachusetts in-store revenue totals $5,733,256.27 for 1 Jan 2022 to 31 Dec 2025 (four full years).
--- Note: DATE_FORMAT is used because my SQL client displayed raw dates one day early (12/31/2021).
 
 -- ================================================
 -- Q2: Revenue by year and month for Massachusetts
@@ -54,6 +53,19 @@ FROM (
         GROUP BY 1) AS total_rev_by_state_in_northeast
     ) AS pct_of_rev_by_state
 WHERE State = 'Massachusetts';  
+
+-- Revenue by state table(inner table):
+SELECT State,
+       total_revenue, 
+       SUM(total_revenue) OVER() AS northeast_revenue, 
+       ROUND(total_revenue / SUM(total_revenue) OVER() * 100, 2 ) AS state_pct_of_region
+FROM (
+      SELECT State, 
+             SUM(Sale_Amount) AS total_revenue 
+      FROM store_sales JOIN store_locations ON store_sales.Store_ID = store_locations.StoreId
+      JOIN management USING(State)
+      WHERE Region = 'Northeast'
+      GROUP BY 1) AS total_rev_by_state_in_northeast;
 
 -- Result: Massachusetts revenue is 23.65% of northeast revenue. 
 
